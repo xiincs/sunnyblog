@@ -1,0 +1,13 @@
+{% extends './components/layout.html' %}
+{% block content %}
+<main class="main_container bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-semibold text-indigo-600 mb-4">文章编辑</h1>
+    <form method="post" class="space-y-4">
+        <label for="title" class="text-gray-700 font-medium">标题:</label>
+        <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-indigo-500">
+        <label for="content" class="text-gray-700 font-medium">内容:</label>
+        <input type="text" id="content" name="content" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-indigo-500">
+        <input type="submit" value="发布" class="bg-indigo-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 ease-in-out">
+    </form>
+</main>
+{% endblock %}
