@@ -1,7 +1,9 @@
 {% extends './components/layout.html' %}
 {% block content %}
 <main class="main_container bg-white p-6 rounded-lg shadow-md">
-    <h1 class="text-2xl font-semibold text-indigo-600 mb-4">{{ article.title }}</h1>
-    <p class="text-gray-700 leading-relaxed">{{ article.content }}</p>
+    <div class="bg-white p-6 rounded-lg shadow ">
+        <h1 class="text-2xl font-semibold text-blue-500 mb-4">{{ article.title }}</h1>
+        <p style="white-space: pre-line;" class="text-gray-700 leading-relaxed">{{ article.content }}</p>
+    </div>
 </main>
 {% endblock %}

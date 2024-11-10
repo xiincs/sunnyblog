@@ -7,6 +7,8 @@
     <title>Title</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.build.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
 </head>
 
 <body class="bg-gray-100 text-gray-800">
@@ -14,13 +16,26 @@
     <!-- 导航栏 -->
     <header class="bg-white shadow-md">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-semibold text-blue-500 hover:text-blue-600">我的博客</a>
+            <a href="/" class="text-2xl font-semibold text-blue-500 hover:text-blue-600">{{ blog_title }}</a>
             <nav class="space-x-4">
-                {% for title,url in [['首页','/'],['注册','/register'],['登录','/login'],['退出登录','/logout'],['新增文章','/edit_article']] %}
+                {% for title,url in [['首页','/']] %}
                 <a href="{{ url }}" class="text-gray-700 hover:text-blue-500 transition duration-300 ease-in-out">
                     {{ title }}
                 </a>
                 {% endfor %}
+                {% if not is_logged_in %}
+                {% for title,url in [['注册','/register'],['登录','/login']] %}
+                <a href="{{ url }}" class="text-gray-700 hover:text-blue-500 transition duration-300 ease-in-out">
+                    {{ title }}
+                </a>
+                {% endfor %}
+                {% else %}
+                {% for title,url in [['新增文章','/edit_article'],['退出登录','/logout']] %}
+                <a href="{{ url }}" class="text-gray-700 hover:text-blue-500 transition duration-300 ease-in-out">
+                    {{ title }}
+                </a>
+                {% endfor %}
+                {% endif %}
             </nav>
         </div>
     </header>
@@ -28,7 +43,7 @@
     <!-- 欢迎标题和描述 -->
     <section class="bg-gradient-to-br from-blue-500 to-blue-400 py-16">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-4 text-white">欢迎来到我的博客</h1>
+            <h1 class="text-4xl font-bold mb-4 text-white">欢迎来到{{ blog_title }}</h1>
             <p class="text-lg text-white opacity-80">分享编程、技术和生活的点滴。</p>
         </div>
     </section>
@@ -39,7 +54,7 @@
     <!-- 页脚 -->
     <footer class="bg-gray-800 py-8">
         <div class="container mx-auto px-4">
-            <p class="text-center text-white opacity-70">© 2024 我的博客. 版权所有.</p>
+            <p class="text-center text-white opacity-70">© 2024 {{ blog_title }}. 版权所有.</p>
         </div>
     </footer>
 
